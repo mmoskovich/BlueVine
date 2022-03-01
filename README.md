@@ -1,2 +1,1 @@
-# BlueVine
-BlueVine - Home assignment
+# BlueVine - Home assignment
