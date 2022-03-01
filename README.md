@@ -10,7 +10,9 @@ The Solution that I choosed is docker based.
 # Diagram
 
 # Components
-docker
+- VirtuelBox as Virtual infrastructure
+- VM running Centos7 as server
+- docker
   - container - nginx
   - container - backend web application
   - container - Elasticsearch
