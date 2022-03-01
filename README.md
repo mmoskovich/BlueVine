@@ -34,6 +34,8 @@ The Solution that I choosed is docker based.
 - Elasticsearch image creation - 03-Elasticsearch.txt
 - Kibana image creation - 04-Kibana.txt
 - Installation and launch commands - 05-Installation.txt
+  - VirtualBox
+  - VM with Centos OS
   - Docker
   - nginx
   - backend web application
