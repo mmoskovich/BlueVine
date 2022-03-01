@@ -24,11 +24,11 @@ docker
 
   
 # Setup Files
-- nginx image creation
-- backend application image creation
-- Elasticsearch image creation
-- Kibana image creation
-- Installation and launch commands
+- nginx image creation - 01-nginx.txt
+- backend application image creation - 02-backend.txt
+- Elasticsearch image creation - 03-Elasticsearch.txt
+- Kibana image creation - 04-Kibana.txt
+- Installation and launch commands - 05-Installation.txt
   - Docker
   - nginx
   - backend web application
