@@ -1,4 +1,4 @@
 # BlueVine - Home assignment
 
 # Assigment
-![Assigment](Assigment.jpg)
+![Assigment](Assigment.JPG)
