@@ -7,7 +7,10 @@
 # Solution
 The Solution that I choosed is docker based.
 
-# Diagram
+# Diagrams
+![Assigment](Overview.JPG)
+
+![Assigment](Flows.JPG)
 
 # Components
 - VirtuelBox as Virtual infrastructure
