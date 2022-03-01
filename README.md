@@ -24,13 +24,13 @@ docker
 
   
 # Setup Files
-1. nginx image creation
-2. backend application image creation
-3. Elasticsearch image creation
-4. Kibana image creation
-5. Installation and launch commands
-5.1 Docker
-5.2 nginx
-5.3 backend web application
-5.4 Elasticsearch
-5.5 Kibana
+- nginx image creation
+- backend application image creation
+- Elasticsearch image creation
+- Kibana image creation
+- Installation and launch commands
+  - Docker
+  - nginx
+  - backend web application
+  - Elasticsearch
+  - Kibana
