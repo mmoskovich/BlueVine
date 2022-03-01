@@ -15,3 +15,9 @@ docker
   - container - backend web application
   - container - Elasticsearch
   - container - Kibana
+
+# Flows
+- nginx -> Kibana (http://<Docker IP>/kibana/)
+- nginx -> backend (http://<Docker IP>/)
+- backend -> Elasticsearch for logs
+- Kibana -> Elasticsearch to present the logs
