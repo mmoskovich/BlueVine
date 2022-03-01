@@ -21,3 +21,12 @@ docker
 - nginx -> backend (http://<Docker IP>/)
 - backend -> Elasticsearch for logs
 - Kibana -> Elasticsearch to present the logs
+
+  
+# Setup Files
+1. Docker installation
+2. nginx image creation and installation
+3. backend application image creation and installation
+4. Elasticsearch image creation and installation
+5. Kibana image creation and installation
+6. Run commands
