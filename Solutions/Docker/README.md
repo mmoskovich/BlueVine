@@ -79,14 +79,16 @@ CMD [ "python", "web-app.py"]
 #### Image Installation Commands
 ```
 cd /root/Home-Assignment/web-app/
+
 docker pull python:3.8.2-alpine
+
 docker build . -t web-app
 ```
 #### Container Installation and Runtime Commands
 Run the commands below to:
 * Create the shared log directory
-* Create dedicated network for communicatiuons between the web-app and nginx applications on port TCP/8080
-* Create the container for the first time and reun it (detached mode)
+* Create dedicated network for communicatiuons between the web-app and nginx applications (on port TCP/8080)
+* Create the container for the first time and run it (detached mode)
 
 ```
 mkdir -p /var/log/web-app/
@@ -101,7 +103,7 @@ docker run -d \
   web-app
 ```
 
-##### ECS Format Log Example
+##### ECS Format Log Example - /var/log/web-app/web-app.log
 ```
 {"@timestamp":"2022-03-05T22:34:11.574Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"werkzeug","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24456,"thread":{"id":139743951750912,"name":"Thread-1"}}}
 {"@timestamp":"2022-03-05T22:34:42.417Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"__main__","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24463,"thread":{"id":139721875691264,"name":"Thread-1"}}}
