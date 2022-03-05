@@ -8,6 +8,7 @@
 Python3 using modules:
 * flask - A simple framework for building complex web applications.
 * ecs_logging - Logging formatters for ECS (Elastic Common Schema) in Python
+
 When accessing the root path ('/') on port 8080, the application will:
 * Return 'Hello world!' message.
 * Store a message in Elastic Common Schema (ECS) format in /var/log/web-app/web-app.log file.
