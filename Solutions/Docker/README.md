@@ -3,7 +3,7 @@
 
 
 # Backend Application
-## Application Python3 / Flask / ecs_logging
+## Backend Application - Python3 / Flask / ecs_logging
 
 Python3 using modules:
 * flask - A simple framework for building complex web applications.
@@ -46,7 +46,7 @@ def index():
 app.run(host='0.0.0.0', port=8080)
 
 ```
-## Docker Image and Container
+## Backend Application - Docker Image and Container
 ### Image installation
 #### File: /root/Home-Assignment/web-app/dockerfile
 The dockerfile is required to create new image that is based on the "python:3.8.2-alpine" image:
