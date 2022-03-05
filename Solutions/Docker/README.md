@@ -103,6 +103,15 @@ docker run -d \
   web-app
 ```
 
+
+##### Sanity Test
+```
+curl -s http://127.0.0.1:8080/
+
+tail var/log/web-app/web-app.log
+```
+
+
 ##### ECS Format Log Examples (/var/log/web-app/web-app.log)
 ```
 {"@timestamp":"2022-03-05T22:34:11.574Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"werkzeug","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24456,"thread":{"id":139743951750912,"name":"Thread-1"}}}
