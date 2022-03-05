@@ -16,8 +16,8 @@ In the backend:
 
 
 # Backend Solution - Centos VM running Docker Containers
-## Backend Web Application - web-app.py (Python3)
-
+## Backend Web Application
+### Backend Web Application - web-app.py (Python3)
 The web application will use Python3 with the following modules:
 * flask - A simple framework for building complex web applications
 * ecs_logging - Logging formatters for ECS (Elastic Common Schema) in Python
@@ -29,7 +29,7 @@ When accessing the root path ('/') on port TCP/8080, the web application will:
    * The log file is used by Filebeat application to forward the messages to ElasticSearch
 
 
-### File: /root/Home-Assignment/web-app/web-app.py
+#### File: /root/Home-Assignment/web-app/web-app.py
 ```
 #!/usr/bin/env python3
 
@@ -56,9 +56,9 @@ def index():
 app.run(host='0.0.0.0', port=8080)
 
 ```
-## Backend Web Application - Docker Image and Container
+### Backend Web Application - Docker Image and Container
 
-### Image installation
+#### Image installation
 "python:3.8.2-alpine" is used as the base image
 
 A dockerfile will be used to create a new 'web-app' image with the following requirments:
@@ -66,7 +66,7 @@ A dockerfile will be used to create a new 'web-app' image with the following req
 * Install flask and ecs_logging python modules
 * Expose port TCP/8080 - will be used to get requests from the nginx
 
-#### File: /root/Home-Assignment/web-app/dockerfile
+##### File: /root/Home-Assignment/web-app/dockerfile
 ```
 FROM python:3.8.2-alpine
 ADD web-app.py /
@@ -82,18 +82,17 @@ cd /root/Home-Assignment/web-app/
 docker pull python:3.8.2-alpine
 docker build . -t web-app
 ```
-### Container Installation and Runtime
-#### Container Installation Commands
+#### Container Installation and Runtime Commands
 Run the commands below to:
 * Create the shared log directory
-* Create dedicated network for communicatiuons between the web-app and nginx applications on port TCP/8080.
+* Create dedicated network for communicatiuons between the web-app and nginx applications on port TCP/8080
+* Create the container for the first time and reun it (detached mode)
 
 ```
 mkdir -p /var/log/web-app/
+
 docker network create internal
-```
-#### Container Runtime Command
-```
+
 docker run -d \
   --name=web-app \
   --network=internal \
@@ -102,9 +101,12 @@ docker run -d \
   web-app
 ```
 
-#### ECS Log format
+##### ECS Format Log Example
 ```
 {"@timestamp":"2022-03-05T22:34:11.574Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"werkzeug","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24456,"thread":{"id":139743951750912,"name":"Thread-1"}}}
 {"@timestamp":"2022-03-05T22:34:42.417Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"__main__","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24463,"thread":{"id":139721875691264,"name":"Thread-1"}}}
 ```
+
+
+
 
