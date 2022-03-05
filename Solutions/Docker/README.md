@@ -13,8 +13,7 @@ When accessing the root path ('/') on port TCP/8080, the application will:
 * Return 'Hello world!' message
 * Store a log line (Elastic Common Schema format) in /var/log/web-app/web-app.log file
     * Notes:
-        * The log file is stored on the local disk of the host itself
-        * It is required for data consisty - to suppurt container restarts
+        * The log file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts
         * The log file is used by Filebeat application to forward the messages to ElasticSearch
 
 
