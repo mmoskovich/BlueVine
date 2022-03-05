@@ -4,13 +4,14 @@ https://cloud.elastic.co/home
 
 ## Create Deployment
 * Deployment Name - mmoskovich
-* User:Password - "elastic:GCEtdirUef9gqkrg6LvOon9e" (Usually stored in keepass or similar password manager software)
-* cloud.id - "mmoskovich:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDg2YTNhMjIxMGRiMDQ3OTlhZDJkMGExYjNlMjMyM2EzJGQyZTM1MjRhN2NhMTRjM2JiZjJjNzc0MTU4MWYxZTgy"
-* ElasticSearch EndPoint - https://mmoskovich.es.us-central1.gcp.cloud.es.io:9243
-* Kibana EndPoint - https://mmoskovich.kb.us-central1.gcp.cloud.es.io:9243
+* User: "elastic"
+* Password: "GCEtdirUef9gqkrg6LvOon9e" (Usually stored in keepass or similar password manager software)
+* cloud.id: "mmoskovich:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDg2YTNhMjIxMGRiMDQ3OTlhZDJkMGExYjNlMjMyM2EzJGQyZTM1MjRhN2NhMTRjM2JiZjJjNzc0MTU4MWYxZTgy"
+* ElasticSearch EndPoint: https://mmoskovich.es.us-central1.gcp.cloud.es.io:9243
+* Kibana EndPoint: https://mmoskovich.kb.us-central1.gcp.cloud.es.io:9243
 
 In the backend:
-* The filebeat container will forward log entries to the "ElasticSearch EndPoint" using Two Factor Authentication (2FA) - "User:Password" and "cloud.id" (over https).
+* The filebeat container will forward log entries to the "ElasticSearch EndPoint" using Two Factor Authentication (2FA) - "User:Password" and "cloud.id" (over https)
 * The nginx container will redirect '/kibana' requests to the "Kibana EndPoint"
 
 
