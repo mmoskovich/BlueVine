@@ -5,6 +5,9 @@
 # Backend Application
 ## Application Python3 / Flask / ecs_logging
 
+Python3 using modules:
+* flask - A simple framework for building complex web applications.
+* ecs_logging - Logging formatters for ECS (Elastic Common Schema) in Python
 
 ```
 #!/usr/bin/env python3
@@ -26,7 +29,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    logger.info("Someone just accessed and got Hello World! :)")
+    logger.info("Someone just accessed '/' and got 'Hello world!' message")
 
     return 'Hello world!'
 
