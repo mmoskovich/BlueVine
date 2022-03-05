@@ -12,9 +12,9 @@ Python3 using modules:
 When accessing the root path ('/') on port 8080, the application will:
 * Return 'Hello world!' message.
 * Store a message in Elastic Common Schema (ECS) format in /var/log/web-app/web-app.log file.
-** Notes:
-*** The file is stored on the local path of the host itself.
-*** It is required for data consisty and suppurt container restarts
+ ** Notes:
+ *** The file is stored on the local path of the host itself.
+ *** It is required for data consisty and suppurt container restarts
 
 
 
