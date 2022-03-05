@@ -1,8 +1,20 @@
 
-# Centos VM running on VirtualBox
+# ElasticSearch and Kibana in cloud
+https://cloud.elastic.co/home
+
+## Create Deployment
+* Deployment Name - mmoskovich
+* User:Password - "elastic:GCEtdirUef9gqkrg6LvOon9e" (Usually stored in keepass or similar password manager software)
+* cloud.id - "mmoskovich:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDg2YTNhMjIxMGRiMDQ3OTlhZDJkMGExYjNlMjMyM2EzJGQyZTM1MjRhN2NhMTRjM2JiZjJjNzc0MTU4MWYxZTgy"
+* ElasticSearch EndPoint - https://mmoskovich.es.us-central1.gcp.cloud.es.io:9243
+* Kibana EndPoint - https://mmoskovich.kb.us-central1.gcp.cloud.es.io:9243
+
+In the backend:
+* The filebeat container will forward log entries to the "ElasticSearch EndPoint" using Two Factor Authentication (2FA) - "User:Password" and "cloud.id" (over https).
+* The nginx container will redirect '/kibana' requests to the "Kibana EndPoint"
 
 
-# Backend Application
+# Backend Solution - Centos VM running Docker
 ## Backend Application - web-app.py (Python3 / Flask / ecs_logging)
 
 The application will use Python3 with the following modules:
