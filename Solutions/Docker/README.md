@@ -107,6 +107,7 @@ docker run -d \
 
 ##### Sanity Tests
 ```
+# From the linux VM:
 curl -s http://127.0.0.1:8080/
 
 tail /var/log/web-app/web-app.log
@@ -154,13 +155,13 @@ tail /var/log/web-app/web-app.log
 
 ## Log Forwarder Application
 ### Log Forwarder Application - filebeat
-The web application logs will be forward Elastic cloud using filebeat application
+filebeat application will be used to forward logs to ES (on cloud)
 
 The filebeat application will:
 * Monitor the /var/log/web-app/web-app.log log file for new entries
 * Ship the log to ES
 * Update the registry file for this activity
-  * Based on the registry file, the filebeat knows what was the last log line that was forwarded
+  * Based on the registry file, the filebeat "knows" what was the last log line that it handled
   * The registry file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts 
 
 #### File: /root/Home-Assignment/filebeat/filebeat.docker.yml
