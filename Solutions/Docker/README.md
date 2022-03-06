@@ -1,5 +1,5 @@
 
-# ElasticSearch and Kibana Application hosted in Elastic Cloud
+# ElasticSearch and Kibana Application hosted on Elastic Cloud
 https://cloud.elastic.co/home
 
 ## Create Deployment
