@@ -16,6 +16,7 @@ In the backend:
 
 
 # Backend Solution - Centos VM running Docker Containers
+
 ## Backend Web Application
 ### Backend Web Application - web-app.py (Python3)
 The web application will use Python3 with the following modules:
@@ -25,8 +26,8 @@ The web application will use Python3 with the following modules:
 When accessing the root path ('/') on port TCP/8080, the web application will:
 * Return 'Hello world!' message
 * Store a log line (Elastic Common Schema format) in /var/log/web-app/web-app.log log file:
-   * The log file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts
-   * The log file is used by Filebeat application to forward the messages to ElasticSearch
+  * The log file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts
+  * The log file is used by Filebeat application to forward the messages to ElasticSearch
 
 
 #### File: /root/Home-Assignment/web-app/web-app.py
@@ -76,7 +77,7 @@ RUN pip install ecs_logging
 EXPOSE 8080
 CMD [ "python", "web-app.py"]
 ```
-#### Image Installation Commands
+##### Image Installation Commands
 ```
 cd /root/Home-Assignment/web-app/
 
@@ -104,11 +105,11 @@ docker run -d \
 ```
 
 
-##### Sanity Test
+##### Sanity Tests
 ```
 curl -s http://127.0.0.1:8080/
 
-tail var/log/web-app/web-app.log
+tail /var/log/web-app/web-app.log
 ```
 
 
@@ -121,3 +122,114 @@ tail var/log/web-app/web-app.log
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Log Forwarder Application
+### Log Forwarder Application - filebeat
+The web application logs will be forward Elastic cloud using filebeat application
+
+The filebeat application will:
+* Monitor the /var/log/web-app/web-app.log log file for new entries
+* Ship the log to ES
+* Update the registry file for this activity
+  * Based on the registry file, the filebeat knows what was the last log line that was forwarded
+  * The registry file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts 
+
+#### File: /root/Home-Assignment/filebeat/filebeat.docker.yml
+```
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+processors:
+- add_cloud_metadata: ~
+
+output.elasticsearch:
+  hosts: ['https://mmoskovich.es.us-central1.gcp.cloud.es.io:9243']
+
+cloud:
+  id: "mmoskovich:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDg2YTNhMjIxMGRiMDQ3OTlhZDJkMGExYjNlMjMyM2EzJGQyZTM1MjRhN2NhMTRjM2JiZjJjNzc0MTU4MWYxZTgy"
+  auth: "elastic:GCEtdirUef9gqkrg6LvOon9e"
+
+filebeat.inputs:
+- type: log
+  paths:
+    - "/var/log/web-app/*.log"
+    
+```
+
+
+
+### Log Forwarder Application - Docker Image and Container
+
+#### Image installation
+"docker.elastic.co/beats/filebeat:8.0.1" is used as the base image
+
+```
+docker pull docker.elastic.co/beats/filebeat:8.0.1
+```
+
+#### Container Installation and Runtime Commands
+Run the commands below to:
+* Create the consist registry directory
+* Create the container for the first time and run it (detached mode) as use root:
+  * Replace the /usr/share/filebeat/filebeat.yml configuration file with above filebeat.docker.yml file
+  * mount log and registry directories
+
+```
+mkdir -p /usr/share/filebeat/data/registry
+
+docker run -d -u root \
+  --name=filebeat \
+  --volume="$(pwd)/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro" \
+  --volume="/var/lib/docker/containers:/var/lib/docker/containers:ro" \
+  --volume="/var/run/docker.sock:/var/run/docker.sock:ro" \
+  --mount type=bind,source=/var/log/web-app,target=/var/log/web-app \
+  --mount type=bind,source=/usr/share/filebeat/data/registry,target=/usr/share/filebeat/data/registry \
+  -e --strict.perms=false \
+  docker.elastic.co/beats/filebeat:8.0.1 filebeat
+```
+
+
+##### Sanity Tests
+```
+curl -s http://127.0.0.1:8080/
+
+# Check for new entry in the filebeat registry file (/usr/share/filebeat/data/registry/filebeat/log.json)
+# Check for new entries in ES
+# Restar the filebeat container and verify that it doesn't ship the entire web application logs again.
+```
