@@ -335,4 +335,7 @@ cat /var/log/web-app/web-app.log
 # Look for the new entries on the Kibana/ES UI
 
 # Registry verification - Restart the filebeat container and confirm, on the Kibana/ES UI, that the filebeat didn't send the entire log lines again
+docker stop filebeat
+docker start filebeat
+docker ps | grep filebeat
 ```
