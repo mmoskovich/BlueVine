@@ -19,7 +19,7 @@ In the backend:
 
 ## Backend Web Application
 ### Backend Web Application - web-app.py (Python3)
-The web application will use Python3 with the following modules:
+The web application will be based on Python3 with the following modules:
 * flask - A simple framework for building complex web applications
 * ecs_logging - Logging formatters for ECS (Elastic Common Schema) in Python
 
