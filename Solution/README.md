@@ -338,4 +338,16 @@ cat /var/log/web-app/web-app.log
 docker stop filebeat
 docker start filebeat
 docker ps | grep filebeat
+
+# From the Linux VM, run the following commands to stress the system and compare the number of transactions with the Kibana UI:
+i=1
+repeat=10000
+while true && [ $i -lt $repeat ] ; do 
+  curl -s http://127.0.0.1:80/
+  echo " #$i $(date -u +"%H:%M:00")"
+  ((i=i+1))
+done > transactions-details.txt
+
+cat transactions-details.txt | awk '{print $NF}' | uniq -c
+
 ```
