@@ -295,8 +295,8 @@ docker pull docker.elastic.co/beats/filebeat:8.0.1
 
 #### Container Installation and Runtime Commands
 Run the commands below to:
-* Create the consist registry directory (/usr/share/filebeat/data/registry) - required 
-* Create the container for the first time and run it (detached mode) as use root:
+* Create a consist registry directory (/usr/share/filebeat/data/registry)
+* Create the container for the first time and run it (detached mode) as user root:
   * Replace the /usr/share/filebeat/filebeat.yml configuration file with the above filebeat.docker.yml file
   * Mount the log (/var/log/web-app) and registry (/usr/share/filebeat/data/registry) directories
 
