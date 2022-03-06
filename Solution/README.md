@@ -127,19 +127,6 @@ docker run -d \
 docker images | grep web-app
 docker ps | grep web-app
 docker inspect web-app
-
-# Open a browser and test the reverse proxy setup to the web application through the nginx:
-http://<LINUX_VM_IP>:80/
-
-# Check the web applcaition log file:
-cat /var/log/web-app/web-app.log
-
-# Log file verification - Restart the web-app container and verify that the web-app.log file on the Linux host was not override
-docker stop web-app
-docker start web-app
-docker ps | grep web-app
-
-cat /var/log/web-app/web-app.log
 ```
 
 
@@ -237,6 +224,20 @@ docker inspect nginx
 
 # Open a browser and test the redirect setup to Kibana:
 http://<LINUX_VM_IP>:80/Kibana
+
+# Open a browser and test the reverse proxy setup to the web application:
+http://<LINUX_VM_IP>:80/
+
+# Check the web applcaition log file:
+cat /var/log/web-app/web-app.log
+
+# Log file verification - Restart the web-app container and verify that the web-app.log file on the Linux host was not override
+docker stop web-app
+docker start web-app
+docker ps | grep web-app
+
+cat /var/log/web-app/web-app.log
+
 ```
 
 
