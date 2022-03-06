@@ -159,8 +159,8 @@ filebeat application will be used to forward logs to ES (on cloud)
 
 The filebeat application will:
 * Monitor the /var/log/web-app/web-app.log log file for new entries
-* Ship the log to ES
-* Update the registry file for this activity
+* Forward the logs to ES
+* Update the registry file for this activity:
   * Based on the registry file, the filebeat "knows" what was the last log line that it handled
   * The registry file is stored on the local disk of the host itself - It is required for data consisty - to suppurt container restarts 
 
@@ -208,7 +208,7 @@ docker pull docker.elastic.co/beats/filebeat:8.0.1
 Run the commands below to:
 * Create the consist registry directory
 * Create the container for the first time and run it (detached mode) as use root:
-  * Replace the /usr/share/filebeat/filebeat.yml configuration file with above filebeat.docker.yml file
+  * Replace the /usr/share/filebeat/filebeat.yml configuration file with the above filebeat.docker.yml file
   * mount log and registry directories
 
 ```
