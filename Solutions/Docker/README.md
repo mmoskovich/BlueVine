@@ -214,6 +214,8 @@ Run the commands below to:
 ```
 mkdir -p /usr/share/filebeat/data/registry
 
+cd /root/Home-Assignment/filebeat
+
 docker run -d -u root \
   --name=filebeat \
   --volume="$(pwd)/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro" \
