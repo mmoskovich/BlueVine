@@ -322,7 +322,7 @@ docker run \
 
 ##### Sanity Tests
 ```
-# From the linux VM:
+# From the Linux host:
 docker images | grep filebeat
 docker ps | grep filebeat
 docker inspect filebeat
