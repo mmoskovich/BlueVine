@@ -1,3 +1,7 @@
+# Solution Diagram
+
+![image](https://user-images.githubusercontent.com/100310547/156922385-2b5310de-ad6d-495c-8d40-6ef4622d728f.png)
+
 
 # ElasticSearch and Kibana Application hosted on Elastic Cloud
 https://cloud.elastic.co/home
