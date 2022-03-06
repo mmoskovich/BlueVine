@@ -161,11 +161,6 @@ filebeat.config:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
 
-filebeat.autodiscover:
-  providers:
-    - type: docker
-      hints.enabled: true
-
 processors:
 - add_cloud_metadata: ~
 
@@ -182,6 +177,8 @@ filebeat.inputs:
     - "/var/log/web-app/web-app.log"
     
 ```
+
+
 
 
 
