@@ -108,6 +108,9 @@ docker run -d \
 ##### Sanity Tests
 ```
 # From the linux VM:
+docker ps | grep web-app
+docker inspect web-app
+
 curl -s http://127.0.0.1:8080/
 
 tail /var/log/web-app/web-app.log
@@ -231,6 +234,9 @@ docker run -d -u root \
 ##### Sanity Tests
 ```
 # From the linux VM:
+docker ps | grep filebeat
+docker inspect filebeat
+
 curl -s http://127.0.0.1:8080/
 
 # Check for new entry in the filebeat registry file
@@ -239,5 +245,5 @@ tail /usr/share/filebeat/data/registry/filebeat/log.json
 # Check for new entries in ES cloud
 
 # Restart the filebeat container and verify that it doesn't ship the entire web application logs again
-dcoker restart filebeat
+docker restart filebeat
 ```
