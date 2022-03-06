@@ -94,6 +94,8 @@ Run the commands below to:
 ```
 docker network create internal
 
+cd /root/Home-Assignment/nginx/
+
 docker run \
   -d \
   --name nginx \
