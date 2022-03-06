@@ -105,6 +105,7 @@ docker network create internal
 
 docker run -d \
   --name=web-app \
+  --expose 8080 \
   --network=internal \
   --volume="$(pwd)/web-app.py:/web-app.py:ro" \
   --mount type=bind,source=/var/log/web-app,target=/var/log/web-app \
@@ -118,10 +119,6 @@ docker run -d \
 docker images | grep web-app
 docker ps | grep web-app
 docker inspect web-app
-
-curl -s http://127.0.0.1:8080/
-
-tail /var/log/web-app/web-app.log
 ```
 
 
