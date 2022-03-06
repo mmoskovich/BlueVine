@@ -26,100 +26,6 @@ In the backend:
 
 
 
-## Proxy Application
-### Proxy Application - nginx
-nginx application will be used as proxy application
-
-The nginx application will listen on port TCP/80 for incoming HTTP requests and will:
-* Forward '/' requests to the web application on port TCP/8080 (HTTP)
-* Redirect '/kibana' requests to the Kibana EP on Elastic cloud (HTTPS)
-
-#### File: /root/Home-Assignment/nginx/nginx.conf
-```
-user  nginx;
-worker_processes  auto;
-
-error_log  /var/log/nginx/error.log notice;
-pid        /var/run/nginx.pid;
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    access_log off;
-    error_log off;
-
-    server {
-        listen 80;
-
-        location = / {
-            proxy_pass http://web-app:8080;
-        }
-
-        location = /kibana {
-            return 301 https://mmoskovich.kb.us-central1.gcp.cloud.es.io:9243;
-        }
-    }
-
-    sendfile        on;
-    #tcp_nopush     on;
-    keepalive_timeout  5;
-    #gzip  on;
-}
-```
-
-
-
-### Proxy Application - Docker Image and Container
-
-#### Image installation
-"nginx:alpine" will be used as the base image
-
-```
-docker pull nginx:alpine
-```
-
-#### Container Installation and Runtime Commands
-Run the commands below to:
-* Create new network, named 'internal', for communicatiuons between the nginx and web-app applications (on port TCP/8080)
-* Create the container for the first time and run it (detached mode):
-  * Port mapping between the linux host and the applicaton on port TCP/80
-  * bind the new 'internal' network
-  * Replace the nginx configration file (/etc/nginx/nginx.conf) with the above nginx configuration file
-
-```
-docker network create internal
-
-cd /root/Home-Assignment/nginx/
-
-docker run \
-  -d \
-  --name nginx \
-  -p 80:80 \
-  --network=internal \
-  --volume="$(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro" \
-  nginx:alpine
-```
-
-
-##### Sanity Tests
-```
-# From the linux VM:
-docker images | grep nginx
-docker ps | grep nginx
-docker inspect nginx
-
-# Open a browser and test the redirect setup to Kibana:
-http://<LINUX_VM_IP>:80/Kibana
-```
-
-
-
-
 
 ## Backend Web Application
 ### Backend Web Application - web-app.py (Python3)
@@ -193,6 +99,7 @@ docker build . -t web-app
 ```
 #### Container Installation and Runtime Commands
 Run the commands below to:
+* Create new network, named 'internal', for communicatiuons between the nginx and web-app applications (on port TCP/8080)
 * Create a shared log directory (/var/log/web-app)
 * Create the container for the first time and run it (detached mode):
   * bind the new 'internal' network
@@ -201,6 +108,8 @@ Run the commands below to:
   
 ```
 mkdir -p /var/log/web-app/
+
+docker network create internal
 
 docker run -d \
   --name=web-app \
@@ -239,6 +148,99 @@ cat /var/log/web-app/web-app.log
 {"@timestamp":"2022-03-05T22:34:11.574Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"werkzeug","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24456,"thread":{"id":139743951750912,"name":"Thread-1"}}}
 {"@timestamp":"2022-03-05T22:34:42.417Z","log.level":"info","message":"Someone just accessed '/' and got 'Hello world!' message","ecs":{"version":"1.6.0"},"log":{"logger":"__main__","origin":{"file":{"line":23,"name":"web-app.py"},"function":"index"},"original":"Someone just accessed '/' and got 'Hello world!' message"},"process":{"name":"MainProcess","pid":24463,"thread":{"id":139721875691264,"name":"Thread-1"}}}
 ```
+
+
+
+## Proxy Application
+### Proxy Application - nginx
+nginx application will be used as proxy application
+
+The nginx application will listen on port TCP/80 for incoming HTTP requests and will:
+* Forward '/' requests to the web application on port TCP/8080 (HTTP)
+* Redirect '/kibana' requests to the Kibana EP on Elastic cloud (HTTPS)
+
+#### File: /root/Home-Assignment/nginx/nginx.conf
+```
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    access_log off;
+    error_log off;
+
+    server {
+        listen 80;
+
+        location = / {
+            proxy_pass http://web-app:8080;
+        }
+
+        location = /kibana {
+            return 301 https://mmoskovich.kb.us-central1.gcp.cloud.es.io:9243;
+        }
+    }
+
+    sendfile        on;
+    #tcp_nopush     on;
+    keepalive_timeout  5;
+    #gzip  on;
+}
+```
+
+
+
+### Proxy Application - Docker Image and Container
+
+#### Image installation
+"nginx:alpine" will be used as the base image
+
+```
+docker pull nginx:alpine
+```
+
+#### Container Installation and Runtime Commands
+Run the commands below to:
+* Create the container for the first time and run it (detached mode):
+  * Port mapping between the linux host and the applicaton on port TCP/80
+  * bind the new 'internal' network
+  * Replace the nginx configration file (/etc/nginx/nginx.conf) with the above nginx configuration file
+
+```
+cd /root/Home-Assignment/nginx/
+
+docker run \
+  -d \
+  --name nginx \
+  -p 80:80 \
+  --network=internal \
+  --volume="$(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro" \
+  nginx:alpine
+```
+
+
+##### Sanity Tests
+```
+# From the linux VM:
+docker images | grep nginx
+docker ps | grep nginx
+docker inspect nginx
+
+# Open a browser and test the redirect setup to Kibana:
+http://<LINUX_VM_IP>:80/Kibana
+```
+
+
+
 
 
 
