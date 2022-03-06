@@ -124,7 +124,7 @@ docker run \
 
 ##### Sanity Tests
 ```
-# From the Linux VM:
+# From the Linux host:
 docker images | grep web-app
 docker ps | grep web-app
 docker inspect web-app
@@ -340,7 +340,7 @@ docker stop filebeat
 docker start filebeat
 docker ps | grep filebeat
 
-# From the Linux VM, run the following commands to stress the system and compare the number of transactions with the Kibana UI:
+# From the Linux host, run the following commands to stress the system and compare the number of transactions with the Kibana UI:
 i=1
 repeat=10000
 while true && [ $i -lt $repeat ] ; do 
