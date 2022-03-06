@@ -212,13 +212,13 @@ docker run \
 
 ##### Sanity Tests
 ```
-# From the linux VM:
+# From the Linux host:
 docker images | grep nginx
 docker ps | grep nginx
 docker inspect nginx
 
 # Open a browser and test the redirect setup to Kibana:
-http://<LINUX_VM_IP>:80/Kibana
+http://<LINUX_VM_IP>:80/kibana
 
 # Open a browser and test the reverse proxy setup to the web application:
 http://<LINUX_VM_IP>:80/
