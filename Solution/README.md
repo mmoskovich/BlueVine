@@ -22,7 +22,7 @@ In the backend:
 
 
 
-# Backend Solution - Centos VM running Docker Containers
+# Backend Solution - Linux (Centos) VM host running Docker Containers
 
 
 
