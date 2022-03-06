@@ -102,7 +102,7 @@ Run the commands below to:
 * Create new network, named 'internal', for communicatiuons between the nginx and web-app applications (on port TCP/8080)
 * Create a shared log directory (/var/log/web-app)
 * Create the container for the first time and run it (detached mode):
-  * bind the new 'internal' network
+  * Bind the new 'internal' network
   * Add the web application (web-app.py) under the root directory
   * Mount the log (/var/log/web-app) directory
   
@@ -111,7 +111,8 @@ mkdir -p /var/log/web-app/
 
 docker network create internal
 
-docker run -d \
+docker run \
+  -d \
   --name=web-app \
   --expose 8080 \
   --network=internal \
