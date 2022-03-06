@@ -21,7 +21,7 @@ In the backend:
 ### Backend Web Application - web-app.py (Python3)
 The web application will be based on Python3 with the following modules:
 * flask - A simple framework for building complex web applications
-* ecs_logging - Logging formatters for ECS (Elastic Common Schema) in Python
+* ecs_logging - Logging formatters for ECS (Elastic Common Schema)
 
 When accessing the root path ('/') on port TCP/8080, the web application will:
 * Return 'Hello world!' message
