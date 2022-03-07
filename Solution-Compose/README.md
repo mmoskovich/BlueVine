@@ -239,7 +239,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compos
 ```
 
 #### Installation
-Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following command:
+Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following command from that directory:
 ```
 docker-compose up -d
 ```
