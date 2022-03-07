@@ -187,7 +187,7 @@ services:
     image: web-app:latest
     build: ./web-app
     networks:
-      - backend
+      - internal
     volumes:
       - ./web-app/web-app.py:/web-app.py:ro
       - /var/log/web-app/web-app.log:/var/log/web-app/web-app.log:rw
@@ -198,7 +198,7 @@ services:
     depends_on:
       - web-app
     networks:
-      - backend
+      - internal
     ports:
       - "80:80"
     volumes:
@@ -209,7 +209,7 @@ services:
     image: docker.elastic.co/beats/filebeat:8.0.1
     user: root
     networks:
-      - backend
+      - internal
     volumes:
       - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
@@ -219,8 +219,8 @@ services:
     command: ["--strict.perms=false"]
 
 networks:
-  backend:
-    name: "custome_backend"
+  internal:
+    name: "internal"
 ```
 
 
