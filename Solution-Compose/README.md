@@ -232,7 +232,9 @@ networks:
 yum install docker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
 rm -rf /usr/bin/docker-compose
+
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compos
 ```
 
@@ -255,6 +257,7 @@ docker-compose up -d
 On the Linux host, verify that the images exist and the containers are up and running:
 ```
 docker images
+
 docker ps
 ```
 
@@ -277,7 +280,9 @@ Check that the filebeat application doesn't send the entire logs upon restart
 Confirm using the Kibana UI
 ```
 docker stop filebeat
+
 docker start filebeat
+
 docker ps | grep filebeat
 ```
 
