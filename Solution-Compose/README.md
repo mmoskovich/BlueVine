@@ -73,8 +73,6 @@ app.run(host='0.0.0.0', port=8080)
 Dockerfile will be used to create a new 'web-app' image with the following requirments:
 * Add the web-app.py script and run it when the container will start
 * Install flask and ecs_logging python modules
-* Expose port TCP/8080 - will be used to get requests from the nginx
-
 
 #### File: ./web-app/Dockerfile
 ```
