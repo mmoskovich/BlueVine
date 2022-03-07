@@ -256,9 +256,8 @@ docker-compose up -d
 ##### Images and Containers
 On the Linux host, verify that the images exist and the containers are up and running:
 ```
-docker images | grep filebeat
-docker ps | grep filebeat
-docker inspect filebeat
+docker images
+docker ps
 ```
 
 ##### Nginx connectivity
