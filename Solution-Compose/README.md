@@ -241,6 +241,13 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compos
 #### Installation
 Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following command from that directory:
 ```
+# Files:
+# ./web-app/web-app.py
+# ./web-app/Dockerfile
+# ./nginx/nginx.conf
+# ./filebeat/filebeat.docker.yml
+# ./docker-compose.yml
+
 docker-compose up -d
 ```
 
