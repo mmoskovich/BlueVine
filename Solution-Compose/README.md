@@ -66,7 +66,7 @@ def index():
 app.run(host='0.0.0.0', port=8080)
 ```
 
-### Backend Web Application - Dcoker Image
+### Backend Web Application - Docker Image
 
 "python:3.8.2-alpine" will be used as the base image
 
