@@ -349,7 +349,7 @@ done > transactions-details.txt
 cat transactions-details.txt | awk '{print $NF}' | uniq -c
 ```
 
-Note: 
+##### Verification tool
 Verification tool (python) can be provided if needed:
 * Send GET requests to nginx ('/')
 * Send GET requests to ES to get the number of requests that arrived
