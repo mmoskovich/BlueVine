@@ -26,7 +26,7 @@ The backend (filebeat component) will upload data to the ElasticSearch which wil
 The ".filebeat..." index will be used to create the "filebeat-\*" Data View
 
 ### "Hello world!" Dashbaord
-The Dashboard will be created based on the "filebeat-\*" Data View.
+The Dashboard will be created based on the "filebeat-\*" Data View
 
 The dashboard will have 2 charts:
 * Vertical Bar Chart - based on timestamp
