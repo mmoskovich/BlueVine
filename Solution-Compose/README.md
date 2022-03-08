@@ -189,7 +189,7 @@ services:
       - internal
     volumes:
       - ./web-app/web-app.py:/web-app.py:ro
-      - /var/log/web-app/web-app.log:/var/log/web-app/web-app.log:rw
+      - /var/log/web-app:/var/log/web-app:rw
 
   nginx:
     container_name: "nginx"
@@ -213,7 +213,7 @@ services:
       - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /var/log/web-app/web-app.log:/var/log/web-app/web-app.log:rw
+      - /var/log/web-app:/var/log/web-app
       - /usr/share/filebeat/data/registry:/usr/share/filebeat/data/registry:rw
     command: ["--strict.perms=false"]
 
@@ -225,20 +225,34 @@ networks:
 
 ### Solution Deployment - Installation
 #### Prerequisites
-* docker 20.10.X
+* docker-ce 20.10.X
 * docker-compose 3.5+
 ```
-yum install docker
+yum remove docker docker-client docker-client-latest docker-common docker-latest
+==============>> yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --enable docker-ce-nightly
+yum install docker-ce docker-ce-cli containerd.io
+
+docker --version
+
+systemctl start docker
+systemctl status docker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 rm -rf /usr/bin/docker-compose
+rm -rf /bin/docker-compose
 
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compos
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+systemctl start docker
+systemctl status docker
 ```
 
 #### Installation
-Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following command from that directory as user root:
+Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following commands from that directory as user root:
 ```
 # Files:
 # ./web-app/web-app.py
