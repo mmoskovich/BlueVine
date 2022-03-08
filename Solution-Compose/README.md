@@ -226,9 +226,12 @@ networks:
 ### Solution Deployment - Installation
 #### Prerequisites
 * docker-ce 20.10.X
-* docker-compose 3.5+
+* docker-compose 3.5+ (1.29.X)
 * Copy the attached solution-compose.tar file to any directory under the server (for example, ~/HA/)
 ```
+
+# Docker installation
+###########################################
 sudo systemctl stop docker
 
 sudo yum remove docker docker-client docker-client-latest docker-common docker-latest
@@ -242,6 +245,9 @@ sudo docker --version
 sudo systemctl start docker
 sudo systemctl status docker
 
+
+# Docker-Compose installation
+###########################################
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
@@ -251,11 +257,12 @@ sudo rm -rf /bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 
+# Create working directory
+###########################################
 mkdir ~/HA
 cd ~/HA
 cp /tmp/solution-compose.tar .
 tar -xvf solution-compose.tar
-
 ```
 
 #### Installation
