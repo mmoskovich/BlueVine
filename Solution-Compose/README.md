@@ -161,7 +161,7 @@ The filebeat application will:
 * Forward the logs to ElasticSearch
 * Update the registry file for the new transactions:
   * Based on the registry file, the filebeat "knows" what was the last log line that it handled
-  * The registry file is stored on the local disk of the linux host under the registry directory (/usr/share/filebeat/data/registry) - It is required for data consisty - to suppurt container restarts and avoid from sending the same data twice
+  * The registry file is stored on the local disk of the linux host under the registry directory (/usr/share/filebeat/data/registry) - It is required for data consisty - to suppurt container restarts and to avoid from sending the same data more than once
 
 #### File: ./filebeat/filebeat.docker.yml
 ```
