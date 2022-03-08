@@ -1,6 +1,6 @@
 # Solution Diagram
 
-![image](https://user-images.githubusercontent.com/100310547/157238798-55476f58-8ce8-4cf4-9647-c7f945f63105.png)
+![image](https://user-images.githubusercontent.com/100310547/157245303-beefb14f-beff-47ce-b5eb-122bffd6c02e.png)
 
 
 # ElasticSearch and Kibana Application hosted on Elastic Cloud
