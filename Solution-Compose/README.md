@@ -335,7 +335,7 @@ sudo docker start filebeat
 sudo docker ps | grep filebeat
 ```
 
-##### Load Tests
+##### E2E Tests
 From the Linux host, run the following commands and confirm the results using the Kibana UI:
 ```
 i=1
