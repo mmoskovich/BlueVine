@@ -243,17 +243,18 @@ networks:
 * AWS VPC:
   * Security Group blocking all incoming traffic except of SSH (TCP/22) and HTTP (TCP/80)
   * EC2 instance up and running with basic Centos7 version, configured with public IP and private key
+  * Notes - The common practice is not to expose the EC2 server with a public IP - it should be behind NLB, etc
 * docker-ce 20.10.X
 * docker-compose 3.5+ (1.29.X)
 * Connect to the EC2 instance and copy the attached solution-compose.tar file to any directory under the server (for example, ~/HA/)
-```
 
+
+```
 # Docker installation
 ###########################################
 sudo systemctl stop docker
 
 sudo yum remove docker docker-client docker-client-latest docker-common docker-latest
-==============>> yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum-config-manager --enable docker-ce-nightly
 sudo yum install docker-ce docker-ce-cli containerd.io
@@ -347,3 +348,9 @@ done > transactions-details.txt
 
 cat transactions-details.txt | awk '{print $NF}' | uniq -c
 ```
+
+Note: 
+Verification tool (python) can be provided if needed:
+* Send GET requests to nginx ('/')
+* Send GET requests to ES to get the number of requests that arrived
+* Compare between the results
