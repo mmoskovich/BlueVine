@@ -8,7 +8,7 @@
 https://cloud.elastic.co/home
 
 ## Create Deployment
-* Deployment Name - mmoskovich
+* Deployment Name: mmoskovich
 * User: "elastic"
 * Password: "GCEtdirUef9gqkrg6LvOon9e" (Usually stored in keepass or similar password manager software)
 * cloud.id: "mmoskovich:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDg2YTNhMjIxMGRiMDQ3OTlhZDJkMGExYjNlMjMyM2EzJGQyZTM1MjRhN2NhMTRjM2JiZjJjNzc0MTU4MWYxZTgy"
