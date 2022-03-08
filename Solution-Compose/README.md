@@ -1,7 +1,6 @@
 # Solution Diagram
 
-![image](https://user-images.githubusercontent.com/100310547/156922450-01a6d543-dac2-4c17-b403-4c239e26e11e.png)
-
+![image](https://user-images.githubusercontent.com/100310547/157238798-55476f58-8ce8-4cf4-9647-c7f945f63105.png)
 
 
 # ElasticSearch and Kibana Application hosted on Elastic Cloud
@@ -22,7 +21,7 @@ In the backend:
 
 
 
-# Backend Solution - Linux (Centos) VM host running Docker Containers
+# Backend Solution - Linux (Centos) EC2 hosted on AWS
 
 ## Backend Web Application
 
