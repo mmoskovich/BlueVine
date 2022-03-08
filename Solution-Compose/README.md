@@ -49,9 +49,9 @@ The web application will be based on Python3 with the following modules:
 
 When accessing the root path ('/') on port TCP/8080, the web application will:
 * Return 'Hello world!' message
-* Store a log line (Elastic Common Schema format) in /var/log/web-app/web-app.log log file:
+* Store a log line in Elastic Common Schema (ECS) format in /var/log/web-app/web-app.log log file:
   * The log file is stored on the local disk of the Linux host itself - It is required for data consisty - to suppurt container restarts
-  * The log file is used by Filebeat application to forward the messages to ElasticSearch
+  * The log file is monitored by the filebeat application to forward messages to ElasticSearch
 
 
 #### File: ./web-app/web-app.py
@@ -154,14 +154,14 @@ http {
 
 ### Log Forwarder Application - filebeat
 
-filebeat application will be used to forward logs to ES (on cloud)
+filebeat application will be used to forward logs to ElasticSearch
 
 The filebeat application will:
 * Monitor the log file (/var/log/web-app/web-app.log) for new entries
-* Forward the logs to ES
+* Forward the logs to ElasticSearch
 * Update the registry file for the new transactions:
   * Based on the registry file, the filebeat "knows" what was the last log line that it handled
-  * The registry file is stored on the local disk of the linux host under the registry directory (/usr/share/filebeat/data/registry) - on the next restart it will continue from the last processing point
+  * The registry file is stored on the local disk of the linux host under the registry directory (/usr/share/filebeat/data/registry) - It is required for data consisty - to suppurt container restarts and avoid from sending the same data twice
 
 #### File: ./filebeat/filebeat.docker.yml
 ```
