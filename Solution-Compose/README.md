@@ -227,7 +227,7 @@ networks:
 #### Prerequisites
 * docker-ce 20.10.X
 * docker-compose 3.5+
-* Copy the attached solution-compose.tar file to any directory under the server
+* Copy the attached solution-compose.tar file to any directory under the server (for example, ~/HA/)
 ```
 sudo systemctl stop docker
 
@@ -250,8 +250,12 @@ sudo rm -rf /bin/docker-compose
 
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-sudo systemctl start docker
-sudo systemctl status docker
+
+mkdir ~/HA
+cd ~/HA
+cp /tmp/solution-compose.tar .
+tar -xvf solution-compose.tar
+
 ```
 
 #### Installation
@@ -263,6 +267,8 @@ Copy the above files under any directory on a Linux Centos host (keep the same d
 # ./nginx/nginx.conf
 # ./filebeat/filebeat.docker.yml
 # ./docker-compose.yml
+
+cd ~/HA
 
 sudo docker-compose up -d
 ```
