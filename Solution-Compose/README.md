@@ -18,6 +18,23 @@ In the backend:
 * The filebeat container will forward log entries to the "ElasticSearch EndPoint" using Two Factor Authentication (2FA) - "User:Password" and "cloud.id" (over https)
 * The nginx container will redirect '/kibana' requests to the "Kibana EndPoint"
 
+## Index and Dashboard
+
+### Index and Data View
+The backend (filebeat component) will upload data to the ElasticSearch which will store it on ".filebeat..." index
+
+The ".filebeat..." index will be used to create the "filebeat-\*" Data View.
+
+### "Hello world!" Dashbaord
+The Dashboard will be created based on the "filebeat-\*" Data View.
+
+The dashboard will have 2 charts:
+* Vertical Bar Chart - based on timestamp
+* Count Chart
+
+![image](https://user-images.githubusercontent.com/100310547/157265690-be839efe-9dee-4ab8-ac27-535da2216a9c.png)
+
+
 
 
 # Backend Solution - Linux (Centos) hosted on AWS EC2
