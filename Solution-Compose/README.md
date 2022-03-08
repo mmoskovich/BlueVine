@@ -23,7 +23,7 @@ In the backend:
 ### Index and Data View
 The backend (filebeat component) will upload data to the ElasticSearch which will store it on ".filebeat..." index
 
-The ".filebeat..." index will be used to create the "filebeat-\*" Data View.
+The ".filebeat..." index will be used to create the "filebeat-\*" Data View
 
 ### "Hello world!" Dashbaord
 The Dashboard will be created based on the "filebeat-\*" Data View.
