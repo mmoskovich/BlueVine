@@ -340,7 +340,7 @@ From the Linux host, run the following commands and confirm the results using th
 ```
 i=1
 repeat=10000
-while true && [ $i -lt $repeat ] ; do 
+while [ ! $i -gt $repeat ] ; do 
   curl -s http://127.0.0.1:80/
   echo " #$i $(date -u +"%H:%M:00")"
   ((i=i+1))
