@@ -267,7 +267,6 @@ tar -xvf solution-compose.tar
 ```
 
 #### Installation
-Copy the above files under any directory on a Linux Centos host (keep the same direcroty hierarchy) and run the following commands from that directory as user root:
 ```
 # Files:
 # ./web-app/web-app.py
