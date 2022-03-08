@@ -267,6 +267,7 @@ tar -xvf solution-compose.tar
 ```
 
 #### Installation
+Run the following commands:
 ```
 # Files:
 # ./web-app/web-app.py
