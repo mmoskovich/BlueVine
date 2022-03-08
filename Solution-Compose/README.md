@@ -133,7 +133,6 @@ http {
     keepalive_timeout  5;
     #gzip  on;
 }
-
 ```
 
 ## Log Forwarder Application
