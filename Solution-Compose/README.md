@@ -227,28 +227,31 @@ networks:
 #### Prerequisites
 * docker-ce 20.10.X
 * docker-compose 3.5+
+* Copy the attached solution-compose.tar file to any directory under the server
 ```
-yum remove docker docker-client docker-client-latest docker-common docker-latest
+sudo systemctl stop docker
+
+sudo yum remove docker docker-client docker-client-latest docker-common docker-latest
 ==============>> yum install -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum-config-manager --enable docker-ce-nightly
-yum install docker-ce docker-ce-cli containerd.io
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum-config-manager --enable docker-ce-nightly
+sudo yum install docker-ce docker-ce-cli containerd.io
 
-docker --version
+sudo docker --version
 
-systemctl start docker
-systemctl status docker
+sudo systemctl start docker
+sudo systemctl status docker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-rm -rf /usr/bin/docker-compose
-rm -rf /bin/docker-compose
+sudo rm -rf /usr/bin/docker-compose
+sudo rm -rf /bin/docker-compose
 
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-systemctl start docker
-systemctl status docker
+sudo systemctl start docker
+sudo systemctl status docker
 ```
 
 #### Installation
@@ -261,9 +264,7 @@ Copy the above files under any directory on a Linux Centos host (keep the same d
 # ./filebeat/filebeat.docker.yml
 # ./docker-compose.yml
 
-sudo -i
-
-docker-compose up -d
+sudo docker-compose up -d
 ```
 
 #### Verifications
@@ -271,9 +272,9 @@ docker-compose up -d
 ##### Images and Containers
 On the Linux host, verify that the images exist and the containers are up and running:
 ```
-docker images
+sudo docker images
 
-docker ps
+sudo docker ps
 ```
 
 ##### Nginx connectivity
@@ -294,11 +295,11 @@ Look for the new entries on the Kibana/ES UI
 Check that the filebeat application doesn't send the entire logs upon restart
 Confirm using the Kibana UI
 ```
-docker stop filebeat
+sudo docker stop filebeat
 
-docker start filebeat
+sudo docker start filebeat
 
-docker ps | grep filebeat
+sudo docker ps | grep filebeat
 ```
 
 ##### Load Tests
