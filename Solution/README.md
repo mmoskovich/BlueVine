@@ -241,9 +241,9 @@ networks:
 ### Solution Deployment - Installation
 #### Prerequisites
 * AWS VPC:
-  * Security Group blocking all incoming traffic except of SSH (TCP/22) and HTTP (TCP/80)
+  * Security Group blocking all incoming traffic except of SSH (TCP/22) and HTTP (TCP/80) that explicity should be enabled
   * EC2 instance up and running with basic Centos7 version, configured with public IP and private key
-  * Notes - The common practice is not to expose the EC2 server with a public IP - it should be behind NLB, etc
+  * Notes - The common practice is not to expose the EC2 server with a public IP - it should be behind NLB (for traffic) and Bastion (for access managment), etc
 * docker-ce 20.10.X
 * docker-compose 3.5+ (1.29.X)
 * Connect to the EC2 instance and copy the attached solution-compose.tar file to any directory under the server (for example, ~/HA/)
